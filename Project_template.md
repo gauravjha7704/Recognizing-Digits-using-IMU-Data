@@ -67,13 +67,13 @@ The IMU data was recorded as a continuous stream and later segmented into indivi
 
 -Classes: Digits 0–9
 
--Training:
+Training:
 
--Optimizer: Adam
+   Optimizer: Adam
 
--Learning Rate: 0.001
+   Learning Rate: 0.001
 
--Loss Function: Categorical Cross-Entropy
+   Loss Function: Categorical Cross-Entropy
 
 Compression:
 
