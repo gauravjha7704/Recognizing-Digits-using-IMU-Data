@@ -117,7 +117,7 @@ The demo validated the end-to-end pipeline, from IMU data acquisition to real-ti
 3. **Similarity in Motion Patterns Between Digits**  
    - Certain digits such as 1 and 7, and 0 and 6, exhibited similar wrist motion
      patterns
-   - This led to confusion between classes and reduced classification accuracy for          these pairs 
+   - This led to confusion between classes and reduced classification accuracy for these pairs 
 
 4. **Limited Edge Resources**  
    - Nicla Vision has constrained memory and computational capacity
@@ -135,4 +135,5 @@ The demo validated the end-to-end pipeline, from IMU data acquisition to real-ti
 
 1. [TensorFlow Documentation](https://www.tensorflow.org/)  
 2. [OpenMV IDE Docs](https://docs.openmv.io/)  
-  
+3. [IMU-Based Handwriting and Gesture Recognition](https://ieeexplore.ieee.org/)
+4. [Convolutional Neural Networks for Time-Series Data – Background on 1D CNNs](https://arxiv.org/).
