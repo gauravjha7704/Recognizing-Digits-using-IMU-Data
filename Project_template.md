@@ -54,7 +54,7 @@ Sampling Type: Time-series IMU data
 
 Data Format: Multivariate sequences (Ax, Ay, Az, Gx, Gy, Gz)
 
-The IMU data was recorded as a continuous stream and later segmented into individual digit samples. Each segment was labeled according to the corresponding digit written and prepared for model training 
+The IMU data was recorded as a continuous stream and later segmented into individual digit samples. Each segment was labeled according to the corresponding digit written and prepared for model training
 ---
 
 ### Model development and compression
