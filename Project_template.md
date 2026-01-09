@@ -33,7 +33,7 @@ Low-power edge-based digit input systems
 
 | Software                     | Purpose                                |
 | ---------------------------- | -------------------------------------- |
-| Arduino IDE                  | IMU data collection                    |
+| OpenMV IDE                  | IMU data collection                    |
 | Python                       | Data preprocessing and model training  |
 | TensorFlow / TensorFlow Lite | Model development and deployment       |
 | NumPy, Pandas                | Signal processing and dataset handling |
@@ -97,7 +97,7 @@ IMU data was captured in real time from the wrist motion
 
 The trained model performed on-device inference
 
-The predicted digit was displayed/logged as output
+The predicted digit was displayed as output
 
 The demo validated the end-to-end pipeline, from IMU data acquisition to real-time digit prediction, demonstrating the feasibility of recognizing handwritten digits using wrist-mounted IMU data on an edge device.
  
