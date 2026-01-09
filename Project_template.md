@@ -119,16 +119,20 @@ The demo validated the end-to-end pipeline, from IMU data acquisition to real-ti
 2. **Segmentation of Continuous IMU Data**  
    - Continuous writing from 0 to 100 made it difficult to isolate individual digits
    - Applied manual or rule-based segmentation to extract digit-level samples
-   - 
+
 3. **Similarity in Motion Patterns Between Digits**  
    - Certain digits such as 1 and 7, and 0 and 6, exhibited similar wrist motion
      patterns
-
    - This led to confusion between classes and reduced classification accuracy for          these pairs 
 
-4. **MQTT Connectivity**  
-   - Network instability affected MQTT transmission  
-   - Used robust error handling and buffering  
+4. **Limited Edge Resources**  
+   - Nicla Vision has constrained memory and computational capacity
+   - Used a lightweight model architecture suitable for embedded deployment
+  
+4. **Consistency in Sensor Attachment**  
+   - Slight changes in sensor placement affected IMU readings
+   - Maintained a consistent attachment position on the marker across all recordings
+  
 
 ---
 
