@@ -93,10 +93,20 @@ The deployed system continuously acquires IMU data from the Nicla Vision board. 
 ---
 
 ### Prototype and Demo
+A working prototype of the IMU-based handwritten digit recognition system was implemented using the Arduino Nicla Vision board attached to the back of a marker.
 
-- Real-time dashboard: Receives alerts via MQTT and displays status  
-- Demo: A patient saying "Help" or waving triggers alert with bed ID  
-- Integration: Multi-modal data from IMU and camera merged to generate alarm if any unusual activity detected.  
+During the demonstration:
+
+The user wrote digits on paper using the instrumented marker
+
+IMU data was captured in real time from the wrist motion
+
+The trained model performed on-device inference
+
+The predicted digit was displayed/logged as output
+
+The demo validated the end-to-end pipeline, from IMU data acquisition to real-time digit prediction, demonstrating the feasibility of recognizing handwritten digits using wrist-mounted IMU data on an edge device.
+ 
 
 ---
 
