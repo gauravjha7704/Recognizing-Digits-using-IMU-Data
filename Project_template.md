@@ -81,7 +81,7 @@ Compact model architecture designed for edge deployment
 
 Reduced parameter count to fit embedded memory constraints
 
-### Model deployment:
+###2. Model deployment:
 
 | Module                      | Hardware             | Notes                                        |
 | --------------------------- | -------------------- | -------------------------------------------- |
