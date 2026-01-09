@@ -112,17 +112,19 @@ The demo validated the end-to-end pipeline, from IMU data acquisition to real-ti
 
 ### Challenges and Workarounds
 
-1. **Limited Dataset Size**  
-   - Problem: Small dataset led to potential overfitting  
-   - Solution: Data augmentation and careful regularization (dropout, batch norm)  
+1. **Variation in Writing Styles**  
+   - Different participants had varying handwriting speeds and stroke patterns
+   - Collected data from multiple users to improve generalization  
 
-2. **Noisy Real-world Data**  
-   - Hand gestures and audio were inconsistent in hospital-like settings  
-   - Applied filtering, smoothing, and spectrogram preprocessing  
+2. **Segmentation of Continuous IMU Data**  
+   - Continuous writing from 0 to 100 made it difficult to isolate individual digits
+   - Applied manual or rule-based segmentation to extract digit-level samples
+   - 
+3. **Similarity in Motion Patterns Between Digits**  
+   - Certain digits such as 1 and 7, and 0 and 6, exhibited similar wrist motion
+     patterns
 
-3. **Hardware Limitations**  
-   - Resource constraints on edge devices (Nicla Vision, Nano BLE)  
-   - Used compact CNNs, model quantization, and offloaded complex inference  
+   - This led to confusion between classes and reduced classification accuracy for          these pairs 
 
 4. **MQTT Connectivity**  
    - Network instability affected MQTT transmission  
