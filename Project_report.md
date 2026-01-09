@@ -101,6 +101,25 @@ The predicted digit was displayed as output
 
 The demo validated the end-to-end pipeline, from IMU data acquisition to real-time digit prediction, demonstrating the feasibility of recognizing handwritten digits using wrist-mounted IMU data on an edge device.
  
+## Results
+
+The IMU-based handwritten digit recognition system was evaluated using a held-out test dataset consisting of segmented digit samples collected from multiple users. The trained 1D CNN model demonstrated the ability to classify digits based on wrist motion patterns captured during handwriting.
+
+Overall, the model achieved reasonable classification performance, with most digits being correctly recognized during real-time testing. Digits with distinct motion patterns showed higher recognition accuracy, while certain digit pairs exhibited confusion due to similarity in handwriting motion.
+
+In particular, digits such as **1 and 7**, as well as **0 and 6**, showed lower classification accuracy because their wrist movement patterns were similar across multiple users. Despite these limitations, the system successfully demonstrated real-time end-to-end operation, from IMU data acquisition using the Nicla Vision board to digit prediction on the laptop.
+
+The results validate the feasibility of using wrist-mounted IMU data for handwritten digit recognition without relying on vision-based input.
+
+---
+
+## Conclusion
+
+This project demonstrated an end-to-end system for handwritten digit recognition using IMU data captured from wrist motion while writing on paper. A lightweight 1D Convolutional Neural Network (CNN) was developed and trained to classify multivariate IMU time-series data corresponding to digits 0–9.
+
+The system integrated IMU data collection using the Arduino Nicla Vision board with real-time inference performed on a local laptop. Experimental results showed that IMU-based digit recognition is a viable alternative to vision-based approaches, particularly in scenarios where camera usage is impractical.
+
+Although certain digits exhibited classification ambiguity due to similar motion patterns, the overall system successfully validated the proposed pipeline. This work provides a foundation for future improvements, including larger datasets, improved segmentation, and deployment of inference directly on edge devices.
 
 ---
 
