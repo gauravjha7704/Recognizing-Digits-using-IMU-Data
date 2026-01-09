@@ -61,25 +61,19 @@ The IMU data was recorded as a continuous stream and later segmented into indivi
 
 ### 1. Handwritten Digit Recognition (IMU-based)
 
--Input: Time-series IMU data (Ax, Ay, Az, Gx, Gy, Gz)
+- **Input:** Time-series IMU data (Ax, Ay, Az, Gx, Gy, Gz)  
+- **Model:** 1D Convolutional Neural Network (CNN) for multivariate time-series classification  
+- **Classes:** Digits 0–9  
 
--Model: Lightweight neural network for multivariate time-series classification
+- **Training:**  
+  - Optimizer: Adam  
+  - Learning Rate: 0.001  
+  - Loss Function: Categorical Cross-Entropy  
 
--Classes: Digits 0–9
+- **Model Design:**  
+  - Lightweight architecture suitable for edge deployment  
+  - Reduced parameter count to meet embedded memory and compute constraints  
 
-Training:
-
-   Optimizer: Adam
-
-   Learning Rate: 0.001
-
-   Loss Function: Categorical Cross-Entropy
-
-Compression:
-
-Compact model architecture designed for edge deployment
-
-Reduced parameter count to fit embedded memory constraints
 
 ### 2. Model deployment:
 
