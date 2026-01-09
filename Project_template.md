@@ -141,8 +141,4 @@ The demo validated the end-to-end pipeline, from IMU data acquisition to real-ti
 
 1. [TensorFlow Documentation](https://www.tensorflow.org/)  
 2. [OpenMV IDE Docs](https://docs.openmv.io/)  
-3. [Arduino Nano BLE 33 Docs](https://docs.arduino.cc/hardware/nano-33-ble/)  
-4. [Raspberry Pi Pico](https://www.raspberrypi.com/products/raspberry-pi-pico/)  
-5. [MQTT Protocol](https://mqtt.org/)  
-6. [MFCC for Audio Processing](https://haythamfayek.com/2016/04/21/speech-processing-for-machine-learning.html)  
-7. [Codebase (GitHub)](https://github.com/HTCSUYOGJARE/UrgentCare-AI-Patinet-Monitoring-System.git)  
+  
