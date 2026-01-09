@@ -35,7 +35,7 @@ Low-power edge-based digit input systems
 | ---------------------------- | -------------------------------------- |
 | OpenMV IDE                  | IMU data collection                    |
 | Python                       | Data preprocessing and model training  |
-| TensorFlow / TensorFlow Lite | Model development and deployment       |
+| TensorFlow  | Model development        |
 | NumPy, Pandas                | Signal processing and dataset handling |
 
 ---
