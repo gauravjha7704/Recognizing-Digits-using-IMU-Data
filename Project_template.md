@@ -1,23 +1,21 @@
-## UrgentCare-AI: Patient Monitoring System
+## IMU-Based Handwritten Digit Recognition System
 
 ### Introduction
 
 
-In critical care environments, timely detection of patient needs is essential. UrgentCare-AI addresses this by implementing a real-time AI-based system that enhances patient monitoring using three integrated modules: 
+Handwritten digit recognition is a fundamental problem in human–computer interaction and pattern recognition. While most existing approaches rely on vision-based methods, such systems often require high computational resources and are sensitive to lighting and camera placement.
 
-- **“Help” Call Notification (Keyword Spotting):** Detects when a patient verbally calls for help.  
-- **Movement Detection:** Monitors hand-waving gestures.  
-- **Bed Presence Detection:** Tracks whether a patient is on the bed.
+This project explores an alternative approach by recognizing handwritten digits using IMU (Inertial Measurement Unit) data collected from the wrist while writing on paper. The system captures motion patterns generated during handwriting and uses machine learning models to classify digits based on temporal IMU signals.
 
-The modules operate independently but contribute collectively to ensure rapid alerting and continuous surveillance. The system leverages compact AI models suitable for embedded deployment and uses MQTT messaging for inter-device communication (except KWS, which directly alerts staff).
+The primary objective of this project is to design an efficient, low-latency edge AI pipeline capable of recognizing digits from wrist motion data, making it suitable for embedded and wearable devices.
 
-In hospitals and elderly care environments, patients may not always be in a position to use conventional alerting systems. UrgentCare-AI aims to bridge this gap by enabling: 
+Potential applications include:
 
-- Contactless assistance requests through audio and gestures  
-- Unattended patient movement detection  
-- Immediate alerts in emergency scenarios  
+Smart pens and wearable input devices
 
-This system reduces the delay between patient need and caregiver response, thus improving safety and care quality.
+Assistive technologies
+
+Low-power edge-based digit input systems
 
 ---
 
@@ -25,97 +23,75 @@ This system reduces the delay between patient need and caregiver response, thus 
 
 #### List of hardware required and their specifications:-
 
-| Device           | Description                                                  |
-|------------------|--------------------------------------------------------------|
-| Nicla Vision     | Compact AI vision board with camera, microphone and onboard Wi-Fi |
-| Arduino Nano BLE 33 | TinyML-compatible microcontroller with IMU                |
-| Raspberry Pi Pico W | Offloads ML inference and publishes MQTT messages          |
-| Server (Local Laptop) | Subscribes to MQTT topics, triggers alerts                |
+| Device               | Description                                               |
+| -------------------- | --------------------------------------------------------- |
+| Arduino Nicla Vision | Edge AI board used for IMU data collection and deployment |
+| IMU Sensor (Onboard) | 6-axis accelerometer and gyroscope                        |
+| Laptop (Local)       | Data preprocessing, model training, and evaluation        |
 
 #### List of software used :-
 
-| Software           | Purpose                                           |
-|--------------------|--------------------------------------------------|
-| TensorFlow         | Model training                                   |
-| OpenMV IDE         | Nicla Vision programming                         |
-| Thonny             | IMU gesture classification, Server and analytics, Keyword spotting, Server, analytics & inference |
-| Edge Impulse Studio | Audio data recording & Model Training            |
+| Software                     | Purpose                                |
+| ---------------------------- | -------------------------------------- |
+| Arduino IDE                  | IMU data collection                    |
+| Python                       | Data preprocessing and model training  |
+| TensorFlow / TensorFlow Lite | Model development and deployment       |
+| NumPy, Pandas                | Signal processing and dataset handling |
 
 ---
 
 ### Data collection
 
-**1. Keyword Spotting**
+IMU data was collected by attaching the Arduino Nicla Vision board to the back of a marker. Participants wrote digits on paper using the marker, enabling the capture of natural wrist and hand motion during handwriting.
 
-- Classes: Help, Noise  
-- Training Set: 365 samples (Help: 196, Noise: 169)  
-- Test Set: 92 samples (Help: 49, Noise: 43)  
+Data was collected from five team members, with each participant writing numbers sequentially from 0 to 100. This resulted in multiple samples for each digit (0–9) and introduced natural variations in writing style and motion dynamics.
 
-**2. Movement Detection**
+Classes: Digits 0–9
 
-- Classes: Idle (I), Waving_hand (W)  
-- Samples: 6500 samples per class  
-- Captured using IMU on Arduino Nano BLE 33  
+Sensors Used: Onboard accelerometer and gyroscope
 
-**3. Bed Presence Detection**
+Sampling Type: Time-series IMU data
 
-- Classes: Present, Absent  
-- Training Set: 172 samples (Present: 136, Absent: 36)  
-- Test Set: 43 samples (Present: 37, Absent: 6)  
-- Captured using onboard camera of Nicla Vision  
+Data Format: Multivariate sequences (Ax, Ay, Az, Gx, Gy, Gz)
 
+The IMU data was recorded as a continuous stream and later segmented into individual digit samples. Each segment was labeled according to the corresponding digit written and prepared for model training.
 ---
 
 ### Model development and compression
 
-### 1. Help Call Notification (KWS)
+### 1. Handwritten Digit Recognition (IMU-based)
 
-- Input: MFCC Spectrogram (98×40)  
-- Model: Conv2D → MaxPooling → BatchNorm → Dropout → Dense → Softmax  
-- Training:  
-  - Epochs: 20  
-  - Batch Size: 128  
-  - Optimizer: Adam  
-  - Learning Rate: 0.001  
-- Performance:  
-  - Accuracy: 91%  
-  - F1 Score: 0.91  
-  - ROC AUC: 0.  
+-Input: Time-series IMU data (Ax, Ay, Az, Gx, Gy, Gz)
 
+-Model: Lightweight neural network for multivariate time-series classification
+
+-Classes: Digits 0–9
+
+-Training:
+
+-Optimizer: Adam
+
+-Learning Rate: 0.001
+
+-Loss Function: Categorical Cross-Entropy
+
+Compression:
+
+Compact model architecture designed for edge deployment
+
+Reduced parameter count to fit embedded memory constraints
 ---
-
-### 2. Movement Detection
-
-- Model: Trained on Arduino Nano BLE 33  
-- Classes: Idle vs. Waving  
-- Inference: Offloaded to Raspberry Pi Pico  
-- Data Pipeline: MQTT publish via pat/imu  
-
----
-
-### 3. Bed Presence Detection
-
-- Model: CNN with 2 Conv layers + Pooling + Dropout  
-- Performance:  
-  - Accuracy: 85.7%  
-  - AUC: 0.75  
-  - F1 Score: 0.84  
-- Inference on Nicla Vision using OpenMV IDE  
 
 ---
 
 ### Model deployment:
 
-| Module           | Hardware              | Notes                                |
-|------------------|-----------------------|------------------------------------|
-| KWS              | Nicla Vision          | Alerts staff directly with bed ID  |
-| Activity Detection | Nano BLE 33 + RPi Pico | Publishes to MQTT topic pat/imu    |
-| Person Present/Absence on bed | Nicla Vision | Publishes to MQTT topic openmv/test |
+| Module                      | Hardware             | Notes                                        |
+| --------------------------- | -------------------- | -------------------------------------------- |
+| IMU-based Digit Recognition | Arduino Nicla Vision | On-device digit prediction from wrist motion |
 
-A local Python process on the server subscribes to MQTT topics and evaluates:  
 
-- Presence + Gesture = Valid Movement  
-- Absence + Gesture = Emergency/Unusual activity  
+The deployed system continuously acquires IMU data from the Nicla Vision board. The incoming time-series data is segmented into individual digit samples and passed to the deployed model for inference. The predicted digit is generated directly on the device, enabling real-time operation without reliance on external computation or cloud services.
 
 ---
 
