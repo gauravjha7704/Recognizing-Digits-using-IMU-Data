@@ -80,7 +80,7 @@ Compression:
 Compact model architecture designed for edge deployment
 
 Reduced parameter count to fit embedded memory constraints
----
+
 ### Model deployment:
 
 | Module                      | Hardware             | Notes                                        |
